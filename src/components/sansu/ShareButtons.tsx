@@ -36,7 +36,7 @@ export default function ShareButtons({
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Kakao && !window.Kakao.isInitialized()) {
       try {
-        window.Kakao.init('YOUR_KAKAO_APP_KEY'); 
+        window.Kakao.init('60e6fb2a346462f871ceaad6a90caf99'); 
       } catch (e) {
         console.error('Kakao init failed', e);
       }
