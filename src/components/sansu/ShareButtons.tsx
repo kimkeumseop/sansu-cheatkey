@@ -70,7 +70,7 @@ export default function ShareButtons({
   };
 
   const handleXShare = () => {
-    const text = `내 운명의 산은 ${mountainName} 🏔️ ${shapeKo} 기운으로 운세전환! #사주 #풍수 #산수치트키`;
+    const text = `내 운명의 산은 ${mountainName} 🏔️ ${shapeKo} 기운으로 운세전환! #사주 #풍수 #개운산 #GAEUNSAN`;
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`);
   };
 

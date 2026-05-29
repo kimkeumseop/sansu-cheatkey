@@ -4,7 +4,7 @@ export default function SansuLandingPage() {
   return (
     <div className="min-h-screen flex flex-col items-center max-w-md mx-auto bg-white shadow-xl relative pb-20">
       <header className="w-full p-6 text-center pt-12">
-        <h2 className="text-[#7C3AED] font-bold text-sm tracking-wider mb-2">산수치트키</h2>
+        <h2 className="text-[#7C3AED] font-black text-xl tracking-tighter mb-2 italic">GAEUNSAN</h2>
         <h1 className="text-3xl font-extrabold leading-tight text-gray-900 mb-4">
           오늘 어느 산에 가야<br/>운이 트일까?
         </h1>

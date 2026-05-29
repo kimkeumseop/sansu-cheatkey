@@ -5,9 +5,9 @@ import Script from 'next/script';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "산수치트키 - 사주로 찾는 내 운명의 영험한 산 | 관악산 효과 그 이상",
-  description: "600년 전 풍수 오성체 + 사주 띠 분석으로 30개 명산 중 오늘 가야 할 산을 추천합니다. 관악산·갓바위·보리암·구인사 등.",
-  metadataBase: new URL('https://sansu-cheatkey.vercel.app'),
+  title: "개운산(GAEUNSAN) - 내 사주로 찾는 운명의 산 | 오늘 어느 산에 가야 운이 트일까?",
+  description: "풍수 오성체 + 사주 분석으로 당신의 운을 열어줄(開運) 영험한 산을 추천합니다. 관악산·갓바위·보리암 등 30개 명산 데이터 기반.",
+  metadataBase: new URL('https://gaeunsan.vercel.app'),
 };
 
 export default function RootLayout({

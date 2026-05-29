@@ -73,8 +73,8 @@ export async function GET(req: NextRequest) {
               </div>
             </div>
           </div>
-          <div style={{ display: 'flex', marginTop: '20px', fontSize: '24px', color: '#666' }}>
-            산수치트키 - 사주로 찾는 내 운명의 산
+          <div style={{ display: 'flex', marginTop: '20px', fontSize: '24px', color: '#666', fontWeight: 'bold' }}>
+            개운산 (GAEUNSAN) - 사주로 찾는 내 운명의 산
           </div>
         </div>
       ),
