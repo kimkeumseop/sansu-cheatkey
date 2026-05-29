@@ -11,16 +11,11 @@ export const ZODIAC_TO_ELEMENT: Record<string, '木' | '火' | '土' | '金' | '
   '닭': '金', '닭띠': '金',
   '개': '土', '개띠': '土',
   '돼지': '水', '돼지띠': '水',
-  // Backward compatibility for core logic if needed
   '자': '水', '축': '土', '인': '木', '묘': '木', '진': '土', '사': '火', 
   '오': '火', '미': '土', '신': '金', '유': '金', '술': '土', '해': '水',
 };
 
 const ZODIAC_NAMES: Record<string, string> = {
-  '신': '원숭이띠',
-  '유': '닭띠',
-  '술': '개띠',
-  '해': '돼지띠',
   '자': '쥐띠',
   '축': '소띠',
   '인': '호랑이띠',
@@ -29,15 +24,24 @@ const ZODIAC_NAMES: Record<string, string> = {
   '사': '뱀띠',
   '오': '말띠',
   '미': '양띠',
+  '신': '원숭이띠',
+  '유': '닭띠',
+  '술': '개띠',
+  '해': '돼지띠',
 };
 
+/**
+ * 띠 계산 핵심 로직 (12지신 순서 기반)
+ * 1900년 = 자년(쥐)
+ * 1988년 = (1988 - 1900) % 12 = 88 % 12 = 4 -> 5번째 띠(진 - 용띠)
+ */
 export function getZodiacByYear(year: number): string {
-  const cycle = ['신','유','술','해','자','축','인','묘','진','사','오','미'];
-  const base = 1900;
-  const branch = cycle[((year - base) % 12 + 12) % 12 === 0 ? 0 : (year - base) % 12];
+  const cycle = ['자','축','인','묘','진','사','오','미','신','유','술','해'];
+  const base = 1900; // 1900년은 경자년(쥐띠)
+  const index = ((year - base) % 12 + 12) % 12;
+  const branch = cycle[index];
   return ZODIAC_NAMES[branch] || branch;
 }
 
-// For mapping back if needed in recommendation logic with data
 export const BRANCH_TO_FRIENDLY: Record<string, string> = ZODIAC_NAMES;
 export const FRIENDLY_TO_BRANCH: Record<string, string> = Object.entries(ZODIAC_NAMES).reduce((acc, [k, v]) => ({ ...acc, [v]: k }), {});
