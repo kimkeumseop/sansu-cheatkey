@@ -3,6 +3,7 @@ import { getZodiacByYear } from '@/lib/sansu/zodiac';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import ShareButtons from '@/components/sansu/ShareButtons';
+import KakaoMap from '@/components/sansu/KakaoMap';
 
 export default async function ResultPage({
   searchParams,
