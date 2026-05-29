@@ -56,6 +56,17 @@ export default async function MountainDetailPage({ params }: { params: { id: str
 
       <div className="w-full p-6 -mt-4 bg-white rounded-t-2xl relative z-10">
         <section className="mb-8">
+          <h3 className="font-bold text-lg mb-3">위치</h3>
+          <KakaoMap 
+            lat={mountain.lat} 
+            lng={mountain.lng} 
+            mountainName={mountain.name_ko}
+            className="w-full h-56"
+          />
+          <p className="text-xs text-gray-500 mt-2 text-center">{mountain.address}</p>
+        </section>
+
+        <section className="mb-8">
           <h3 className="font-bold text-lg mb-3">풍수 스토리</h3>
           <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-xl">
             {mountain.story}

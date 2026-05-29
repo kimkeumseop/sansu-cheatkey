@@ -57,6 +57,16 @@ export default async function ResultPage({
       </div>
 
       <div className="w-[90%] mt-4">
+        <h3 className="font-bold text-gray-800 mb-2 ml-1 text-sm">산 위치 확인하기</h3>
+        <KakaoMap 
+          lat={bestMatch.mountain.lat} 
+          lng={bestMatch.mountain.lng} 
+          mountainName={bestMatch.mountain.name_ko}
+          className="w-full h-48"
+        />
+      </div>
+
+      <div className="w-[90%] mt-4">
         <Link href={`/sansu/mountain/${bestMatch.mountain.id}`} className="block w-full bg-gray-900 text-white text-center font-bold py-3 rounded-xl hover:bg-gray-800 transition">
           자세히 보기 (코스/명당)
         </Link>

@@ -25,6 +25,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=60e6fb2a346462f871ceaad6a90caf99&autoload=false&libraries=services`}
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );
