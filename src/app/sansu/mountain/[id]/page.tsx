@@ -2,6 +2,7 @@ import { getAllMountains } from '@/lib/sansu/recommender';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import KakaoMap from '@/components/sansu/KakaoMap';
 
 type Props = {
   params: { id: string };
