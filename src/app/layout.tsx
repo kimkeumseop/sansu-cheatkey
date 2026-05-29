@@ -20,14 +20,14 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-50 text-gray-900`}>
         {children}
         <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=60e6fb2a346462f871ceaad6a90caf99&autoload=false&libraries=services`}
+          strategy="beforeInteractive"
+        />
+        <Script
           src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js"
           integrity="sha384-lX7up7UIW9pS6YJ4pE8963+pS/7533L9Vl/u93976378/1485641151670"
           crossOrigin="anonymous"
           strategy="afterInteractive"
-        />
-        <Script
-          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=60e6fb2a346462f871ceaad6a90caf99&autoload=false&libraries=services`}
-          strategy="beforeInteractive"
         />
       </body>
     </html>

@@ -21,44 +21,37 @@ export default function KakaoMap({ lat, lng, level = 5, className = "w-full h-64
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const loadMap = () => {
-      if (window.kakao && window.kakao.maps && mapRef.current) {
-        const options = {
-          center: new window.kakao.maps.LatLng(lat, lng),
-          level: level,
-        };
+    const initializeMap = () => {
+      if (window.kakao && window.kakao.maps) {
+        window.kakao.maps.load(() => {
+          if (!mapRef.current) return;
 
-        const map = new window.kakao.maps.Map(mapRef.current, options);
+          const options = {
+            center: new window.kakao.maps.LatLng(lat, lng),
+            level: level,
+          };
 
-        // Add Marker
-        const markerPosition = new window.kakao.maps.LatLng(lat, lng);
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition,
+          const map = new window.kakao.maps.Map(mapRef.current, options);
+
+          const markerPosition = new window.kakao.maps.LatLng(lat, lng);
+          const marker = new window.kakao.maps.Marker({
+            position: markerPosition,
+          });
+          marker.setMap(map);
+
+          const content = `<div style="padding:5px 10px; background:white; border-radius:20px; border:2px solid #7C3AED; font-size:12px; font-weight:bold; color:#7C3AED; box-shadow:0 2px 6px rgba(0,0,0,0.1);">${mountainName}</div>`;
+          const customOverlay = new window.kakao.maps.CustomOverlay({
+            position: markerPosition,
+            content: content,
+            yAnchor: 2.3
+          });
+          customOverlay.setMap(map);
         });
-        marker.setMap(map);
-
-        // Add Custom Overlay or InfoWindow
-        const content = `<div style="padding:5px; background:white; border-radius:5px; border:1px solid #ccc; font-size:12px; font-weight:bold;">${mountainName}</div>`;
-        const customOverlay = new window.kakao.maps.CustomOverlay({
-          position: markerPosition,
-          content: content,
-          yAnchor: 2.5
-        });
-        customOverlay.setMap(map);
       }
     };
 
     if (window.kakao && window.kakao.maps) {
-      loadMap();
-    } else {
-      // Script is loaded in layout, but double check
-      const interval = setInterval(() => {
-        if (window.kakao && window.kakao.maps) {
-          loadMap();
-          clearInterval(interval);
-        }
-      }, 100);
-      return () => clearInterval(interval);
+      initializeMap();
     }
   }, [lat, lng, level, mountainName]);
 
