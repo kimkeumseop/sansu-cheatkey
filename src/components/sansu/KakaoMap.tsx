@@ -23,6 +23,7 @@ export default function KakaoMap({ lat, lng, level = 5, className = "w-full h-64
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let mapInstance: any = null;
 
     const initializeMap = () => {
