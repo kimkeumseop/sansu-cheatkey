@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-50 text-gray-900`}>
         {children}
         <Script
-          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=60e6fb2a346462f871ceaad6a90caf99&autoload=false&libraries=services`}
+          src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=60e6fb2a346462f871ceaad6a90caf99&autoload=false&libraries=services"
           strategy="beforeInteractive"
         />
         <Script
