@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sansu-cheatkey.vercel.app/sitemap.xml
