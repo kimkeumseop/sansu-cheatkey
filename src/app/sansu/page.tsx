@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function SansuLandingPage() {
   return (
-    <div className="min-h-screen flex flex-col items-center max-w-md mx-auto bg-white shadow-xl relative pb-20">
+    <>
       <header className="w-full p-6 text-center pt-12">
         <h2 className="text-[#7C3AED] font-black text-xl tracking-tighter mb-2 italic">GAEUNSAN</h2>
         <h1 className="text-3xl font-extrabold leading-tight text-gray-900 mb-4">
@@ -51,9 +51,24 @@ export default function SansuLandingPage() {
         </p>
       </section>
 
-      <footer className="w-full p-6 text-center text-xs text-gray-400 mt-10 border-t border-gray-100">
-        본 서비스는 전통 풍수 오성체 이론과 사주 12지 오행을 결합한 콘텐츠 추천이며, 종교·의료·법률 자문이 아닙니다. 등산 시 안전수칙을 준수하시고, 위험 코스는 전문 가이드와 동행하세요.
-      </footer>
-    </div>
+      <section className="w-full p-6 mt-4">
+        <div className="flex justify-between items-end mb-4">
+          <h3 className="font-bold text-lg">개운 매거진</h3>
+          <Link href="/sansu/articles" className="text-xs text-[#7C3AED] font-bold hover:underline">모두 보기</Link>
+        </div>
+        <div className="space-y-4">
+          <Link href="/sansu/articles/five-elements" className="block bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+            <span className="text-[10px] text-[#7C3AED] font-bold block mb-1">풍수지리</span>
+            <h4 className="font-bold text-sm mb-1 leading-tight">당신의 운명을 바꾸는 산의 5가지 형태: 오성체 가이드</h4>
+            <p className="text-xs text-gray-500 line-clamp-1">목, 화, 토, 금, 수 - 산의 모양에 따라 달라지는 기운...</p>
+          </Link>
+          <Link href="/sansu/articles/mountain-healing" className="block bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition">
+            <span className="text-[10px] text-green-600 font-bold block mb-1">마인드 케어</span>
+            <h4 className="font-bold text-sm mb-1 leading-tight">왜 힘들 때 산에 가야 할까? 과학과 풍수가 말하는 치유력</h4>
+            <p className="text-xs text-gray-500 line-clamp-1">피톤치드와 지기(地氣)의 만남. 마음의 정화가 필요할 때...</p>
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }

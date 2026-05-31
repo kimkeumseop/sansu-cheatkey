@@ -43,7 +43,7 @@ export default async function MountainDetailPage({ params }: { params: { id: str
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center max-w-md mx-auto bg-white shadow-xl relative pb-20">
+    <>
       <div className="w-full h-64 bg-slate-800 relative">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
         <div className="absolute bottom-6 left-6 text-white">
@@ -128,10 +128,10 @@ export default async function MountainDetailPage({ params }: { params: { id: str
           </div>
         </section>
 
-        <Link href="/sansu" className="block w-full text-center text-gray-500 text-sm font-bold mt-10 hover:text-gray-900 underline">
+        <Link href="/sansu" className="block w-full text-center text-gray-500 text-sm font-bold mt-10 hover:text-gray-900 underline pb-10">
           ← 처음으로 돌아가기
         </Link>
       </div>
-    </div>
+    </>
   );
 }

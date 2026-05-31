@@ -14,7 +14,7 @@ export default function SansuFormPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center max-w-md mx-auto bg-white shadow-xl p-6 pt-12">
+    <div className="p-6 pt-12">
       <h1 className="text-2xl font-bold mb-6 text-center">내 운명의 산 찾기</h1>
       
       <form onSubmit={handleSubmit} className="w-full space-y-6">

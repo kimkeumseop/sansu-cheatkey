@@ -26,14 +26,14 @@ export default async function ResultPage({
   const zodiac = getZodiacByYear(birthYear);
 
   return (
-    <div className="min-h-screen flex flex-col items-center max-w-md mx-auto bg-gray-50 shadow-xl pb-20">
+    <div className="pb-20">
       <div className="w-full bg-[#7C3AED] p-6 text-white text-center pt-10 pb-16 rounded-b-[2.5rem]">
         <p className="text-purple-200 text-sm font-bold mb-1">[{zodiac}] 님의 운명의 산</p>
         <h1 className="text-4xl font-extrabold mb-2">{bestMatch.mountain.name_ko}</h1>
         <p className="text-xl opacity-90 font-serif">{bestMatch.mountain.name_hanja}</p>
       </div>
 
-      <div className="w-[90%] -mt-10 bg-white rounded-2xl shadow-xl p-6 border border-gray-100 relative">
+      <div className="w-[90%] mx-auto -mt-10 bg-white rounded-2xl shadow-xl p-6 border border-gray-100 relative">
         <div className="absolute top-0 right-4 -translate-y-1/2 bg-yellow-400 text-yellow-900 font-bold px-3 py-1 rounded-full text-xs shadow-md">
           {bestMatch.mountain.shape_ko} ({bestMatch.mountain.five_element})
         </div>
@@ -57,7 +57,7 @@ export default async function ResultPage({
         />
       </div>
 
-      <div className="w-[90%] mt-4">
+      <div className="w-[90%] mx-auto mt-4">
         <h3 className="font-bold text-gray-800 mb-2 ml-1 text-sm">산 위치 확인하기</h3>
         <GoogleMap 
           lat={bestMatch.mountain.lat} 
@@ -67,14 +67,14 @@ export default async function ResultPage({
         />
       </div>
 
-      <div className="w-[90%] mt-4">
+      <div className="w-[90%] mx-auto mt-4">
         <Link href={`/sansu/mountain/${bestMatch.mountain.id}`} className="block w-full bg-gray-900 text-white text-center font-bold py-3 rounded-xl hover:bg-gray-800 transition">
           자세히 보기 (코스/명당)
         </Link>
       </div>
 
       {recommendations.length > 1 && (
-        <div className="w-[90%] mt-8">
+        <div className="w-[90%] mx-auto mt-8">
           <h3 className="font-bold text-gray-800 mb-3">차순위 추천 산</h3>
           <div className="space-y-3">
             {recommendations.slice(1).map((rec, idx) => (
