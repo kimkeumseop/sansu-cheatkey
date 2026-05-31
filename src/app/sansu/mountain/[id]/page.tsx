@@ -2,7 +2,7 @@ import { getAllMountains } from '@/lib/sansu/recommender';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import KakaoMap from '@/components/sansu/KakaoMap';
+import GoogleMap from '@/components/sansu/GoogleMap';
 
 type Props = {
   params: { id: string };
@@ -58,7 +58,7 @@ export default async function MountainDetailPage({ params }: { params: { id: str
       <div className="w-full p-6 -mt-4 bg-white rounded-t-2xl relative z-10">
         <section className="mb-8">
           <h3 className="font-bold text-lg mb-3">위치</h3>
-          <KakaoMap 
+          <GoogleMap 
             lat={mountain.lat} 
             lng={mountain.lng} 
             mountainName={mountain.name_ko}
@@ -121,7 +121,7 @@ export default async function MountainDetailPage({ params }: { params: { id: str
             <div className="flex gap-2">
               {mountain.best_for_zodiac.map((zodiac, idx) => (
                 <span key={idx} className="bg-white text-yellow-900 px-3 py-1 rounded-full text-sm font-bold border border-yellow-200 shadow-sm">
-                  {zodiac}띠
+                  {zodiac}
                 </span>
               ))}
             </div>

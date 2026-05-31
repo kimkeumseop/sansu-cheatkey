@@ -3,7 +3,7 @@ import { getZodiacByYear } from '@/lib/sansu/zodiac';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import ShareButtons from '@/components/sansu/ShareButtons';
-import KakaoMap from '@/components/sansu/KakaoMap';
+import GoogleMap from '@/components/sansu/GoogleMap';
 
 export default async function ResultPage({
   searchParams,
@@ -59,7 +59,7 @@ export default async function ResultPage({
 
       <div className="w-[90%] mt-4">
         <h3 className="font-bold text-gray-800 mb-2 ml-1 text-sm">산 위치 확인하기</h3>
-        <KakaoMap 
+        <GoogleMap 
           lat={bestMatch.mountain.lat} 
           lng={bestMatch.mountain.lng} 
           mountainName={bestMatch.mountain.name_ko}
