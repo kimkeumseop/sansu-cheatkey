@@ -3,7 +3,7 @@ export default function PrivacyPage() {
     <div className="p-6 pt-12 prose prose-sm max-w-none">
       <h1 className="text-2xl font-bold mb-6">개인정보처리방침</h1>
       <p className="text-gray-600 mb-4">
-        GAEUNSAN(이하 '회사')은 이용자의 개인정보를 중요시하며, "개인정보 보호법" 및 관련 법령을 준수하고 있습니다.
+        GAEUNSAN(이하 &apos;회사&apos;)은 이용자의 개인정보를 중요시하며, &quot;개인정보 보호법&quot; 및 관련 법령을 준수하고 있습니다.
       </p>
       
       <h2 className="text-lg font-bold mt-8 mb-4">1. 개인정보의 수집 및 이용 목적</h2>

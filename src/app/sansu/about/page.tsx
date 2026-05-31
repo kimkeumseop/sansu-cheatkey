@@ -5,11 +5,11 @@ export default function AboutPage() {
       
       <div className="space-y-6 text-gray-700 leading-relaxed">
         <p className="font-bold text-lg">
-          "오늘 가야 할 산이 당신의 내일을 바꿉니다."
+          &quot;오늘 가야 할 산이 당신의 내일을 바꿉니다.&quot;
         </p>
         
         <p>
-          개운산(GAEUNSAN)은 단순히 등산 코스를 알려주는 앱이 아닙니다. 600년 조선의 풍수지리 전통인 '오성체(五星體)' 이론과 개인의 사주 명리학을 결합하여, 현재 당신에게 가장 필요한 기운을 가진 산을 찾아주는 '운명 가이드'입니다.
+          개운산(GAEUNSAN)은 단순히 등산 코스를 알려주는 앱이 아닙니다. 600년 조선의 풍수지리 전통인 &apos;오성체(五星體)&apos; 이론과 개인의 사주 명리학을 결합하여, 현재 당신에게 가장 필요한 기운을 가진 산을 찾아주는 &apos;운명 가이드&apos;입니다.
         </p>
 
         <section className="bg-purple-50 p-5 rounded-2xl border border-purple-100">
@@ -28,7 +28,7 @@ export default function AboutPage() {
         </ul>
 
         <p className="text-sm">
-          답답한 정체기를 뚫고 싶을 때, 새로운 시작을 앞두고 용기가 필요할 때, 혹은 지친 마음을 위로받고 싶을 때 개운산이 추천하는 당신만의 '영험한 산'을 찾아 떠나보세요.
+          답답한 정체기를 뚫고 싶을 때, 새로운 시작을 앞두고 용기가 필요할 때, 혹은 지친 마음을 위로받고 싶을 때 개운산이 추천하는 당신만의 &apos;영험한 산&apos;을 찾아 떠나보세요.
         </p>
       </div>
     </div>

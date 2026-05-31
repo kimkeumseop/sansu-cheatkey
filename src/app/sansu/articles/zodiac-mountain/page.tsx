@@ -17,7 +17,7 @@ export default function ArticlePage() {
       <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed space-y-6">
         <p>
           한국의 풍수와 명리학은 서로 밀접하게 연결되어 있습니다. 우리가 태어난 해의 띠(12지신)는 고유한 오행의 기운을 가지고 있으며, 산 역시 그 지세와 형상에 따라 특정 오행의 기운을 강하게 품고 있습니다. 
-          자신의 띠와 '상생(相生)' 관계에 있는 산을 찾으면, 그 영험함이 배가 된다는 사실을 알고 계셨나요?
+          자신의 띠와 &apos;상생(相生)&apos; 관계에 있는 산을 찾으면, 그 영험함이 배가 된다는 사실을 알고 계셨나요?
         </p>
 
         <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-l-4 border-blue-500 pl-3">수(水)의 기운: 쥐띠, 돼지띠</h2>
@@ -48,7 +48,7 @@ export default function ArticlePage() {
         <section className="bg-slate-50 p-6 rounded-2xl border border-gray-100 mt-12">
           <p className="font-bold mb-2">🔍 내 띠와 찰떡궁합인 산은 어디?</p>
           <p className="text-sm">
-            복잡한 오행 계산, 직접 하실 필요 없습니다. '개운산'이 당신의 태어난 연도와 필요 기운을 분석하여 최고의 상생 명산을 바로 찾아드립니다.
+            복잡한 오행 계산, 직접 하실 필요 없습니다. &apos;개운산&apos;이 당신의 태어난 연도와 필요 기운을 분석하여 최고의 상생 명산을 바로 찾아드립니다.
           </p>
           <Link href="/sansu/form" className="mt-4 inline-block bg-[#7C3AED] text-white px-6 py-2 rounded-full text-xs font-bold shadow-md">
             띠별 맞춤 산 추천받기

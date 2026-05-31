@@ -5,7 +5,7 @@ export default function TermsPage() {
       
       <h2 className="text-lg font-bold mt-8 mb-4">제1조 (목적)</h2>
       <p className="text-gray-600 mb-4">
-        이 약관은 GAEUNSAN(이하 '회사')이 제공하는 웹서비스의 이용조건 및 절차, 이용자와 회사의 권리, 의무, 책임사항을 규정함을 목적으로 합니다.
+        이 약관은 GAEUNSAN(이하 &apos;회사&apos;)이 제공하는 웹서비스의 이용조건 및 절차, 이용자와 회사의 권리, 의무, 책임사항을 규정함을 목적으로 합니다.
       </p>
 
       <h2 className="text-lg font-bold mt-8 mb-4">제2조 (서비스의 내용)</h2>
