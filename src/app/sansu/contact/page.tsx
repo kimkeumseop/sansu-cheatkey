@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '문의하기',
+  description: '개운산(GAEUNSAN) 서비스 문의, 오류 제보, 제휴 제안을 위한 연락처 안내입니다.',
+  alternates: { canonical: '/sansu/contact' },
+};
+
 export default function ContactPage() {
   return (
     <div className="p-6 pt-12">
@@ -27,8 +35,10 @@ export default function ContactPage() {
       </div>
 
       <div className="mt-12 p-4 text-center">
-        <p className="text-[10px] text-gray-400">
-          GAEUNSAN | 대표: 김개운 | 주소: 서울특별시 명산구 풍수길 30
+        <p className="text-[10px] text-gray-400 leading-relaxed">
+          GAEUNSAN | 대표: 김금섭
+          <br />
+          경기도 과천시 과천대로 2길
         </p>
       </div>
     </div>

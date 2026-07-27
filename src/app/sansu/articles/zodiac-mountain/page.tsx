@@ -1,4 +1,18 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '12지신과 궁합이 맞는 명산: 띠별로 다른 영험한 장소들',
+  description:
+    '쥐띠부터 돼지띠까지 — 띠마다 타고난 오행이 다르고, 상생(相生) 관계에 있는 산도 다릅니다. 띠별로 잘 맞는 산형을 정리했습니다.',
+  alternates: { canonical: '/sansu/articles/zodiac-mountain' },
+  openGraph: {
+    type: 'article',
+    title: '12지신과 궁합이 맞는 명산: 띠별로 다른 영험한 장소들',
+    description: '내 띠와 상생하는 산에서 소원이 더 잘 이뤄지는 이유.',
+    url: '/sansu/articles/zodiac-mountain',
+  },
+};
 
 export default function ArticlePage() {
   return (

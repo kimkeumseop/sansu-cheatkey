@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '개인정보처리방침',
+  description: '개운산(GAEUNSAN)의 개인정보 수집·이용·보관 및 제3자 제공에 관한 안내입니다.',
+  alternates: { canonical: '/sansu/privacy' },
+};
+
 export default function PrivacyPage() {
   return (
     <div className="p-6 pt-12 prose prose-sm max-w-none">

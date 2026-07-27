@@ -1,4 +1,18 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '왜 힘들 때 산에 가야 할까? 과학과 풍수가 말하는 치유력',
+  description:
+    '피톤치드·음이온 같은 과학적 근거부터 지기(地氣) 순환이라는 풍수적 해석까지, 마음이 지쳤을 때 산이 주는 회복의 원리를 정리했습니다.',
+  alternates: { canonical: '/sansu/articles/mountain-healing' },
+  openGraph: {
+    type: 'article',
+    title: '왜 힘들 때 산에 가야 할까? 과학과 풍수가 말하는 산의 치유력',
+    description: '피톤치드와 지기(地氣)의 만남. 마음의 정화가 필요할 때.',
+    url: '/sansu/articles/mountain-healing',
+  },
+};
 
 export default function ArticlePage() {
   return (

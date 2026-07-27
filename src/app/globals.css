@@ -1,27 +1,87 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand: #7C3AED;
+  --brand-deep: #4C1D95;
+  --accent: #FCD34D;
+
+  --wood: #22C55E;
+  --fire: #EF4444;
+  --earth: #F59E0B;
+  --metal: #64748B;
+  --water: #3B82F6;
+
+  --ink: #1A1420;
+  --ink-soft: #6B6577;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 한자·풍수 용어 강조용 명조 계열.
+   웹폰트를 추가로 받지 않도록 시스템 명조를 우선 사용한다
+   (Noto Serif KR 웹폰트는 @font-face CSS만 gzip 48KB라 렌더 차단 비용이 크다). */
+.font-hanja {
+  font-family: 'Noto Serif KR', 'Nanum Myeongjo', AppleMyungjo, 'Apple SD Gothic Neo',
+    Batang, 바탕, serif;
+  letter-spacing: 0.05em;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .glow-brand {
+    box-shadow: 0 10px 30px -8px rgba(124, 58, 237, 0.28);
+  }
+  .glow-brand-lg {
+    box-shadow: 0 20px 45px -12px rgba(124, 58, 237, 0.35);
+  }
+  .card-soft {
+    box-shadow: 0 8px 24px -10px rgba(76, 29, 149, 0.16);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-rise {
+    animation: none;
   }
 }

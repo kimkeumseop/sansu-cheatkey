@@ -9,8 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        brand: {
+          DEFAULT: "#7C3AED",
+          deep: "#4C1D95",
+          soft: "#F5F3FF",
+        },
+        accent: "#FCD34D",
+        wood: "#22C55E",
+        fire: "#EF4444",
+        earth: "#F59E0B",
+        metal: "#64748B",
+        water: "#3B82F6",
+      },
+      borderRadius: {
+        "4xl": "2rem",
       },
     },
   },

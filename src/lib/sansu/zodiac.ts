@@ -45,3 +45,36 @@ export function getZodiacByYear(year: number): string {
 
 export const BRANCH_TO_FRIENDLY: Record<string, string> = ZODIAC_NAMES;
 export const FRIENDLY_TO_BRANCH: Record<string, string> = Object.entries(ZODIAC_NAMES).reduce((acc, [k, v]) => ({ ...acc, [v]: k }), {});
+
+export const ZODIAC_EMOJI: Record<string, string> = {
+  '쥐띠': '🐭',
+  '소띠': '🐮',
+  '호랑이띠': '🐯',
+  '토끼띠': '🐰',
+  '용띠': '🐲',
+  '뱀띠': '🐍',
+  '말띠': '🐴',
+  '양띠': '🐑',
+  '원숭이띠': '🐵',
+  '닭띠': '🐔',
+  '개띠': '🐶',
+  '돼지띠': '🐷',
+};
+
+export const ZODIAC_HANJA: Record<string, string> = {
+  '쥐띠': '子',
+  '소띠': '丑',
+  '호랑이띠': '寅',
+  '토끼띠': '卯',
+  '용띠': '辰',
+  '뱀띠': '巳',
+  '말띠': '午',
+  '양띠': '未',
+  '원숭이띠': '申',
+  '닭띠': '酉',
+  '개띠': '戌',
+  '돼지띠': '亥',
+};
+
+/** 띠 순서 목록 (UI 매트릭스용) */
+export const ALL_ZODIACS: string[] = ['쥐띠','소띠','호랑이띠','토끼띠','용띠','뱀띠','말띠','양띠','원숭이띠','닭띠','개띠','돼지띠'];

@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sansu-cheatkey.vercel.app/sitemap.xml
+# 개인화된 결과 URL은 파라미터 조합이 무한해 색인에서 제외
+Disallow: /sansu/result
+
+Sitemap: https://gaeunsan.vercel.app/sitemap.xml

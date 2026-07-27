@@ -1,3 +1,12 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '소개',
+  description:
+    '개운산(GAEUNSAN)은 600년 조선 풍수의 오성체 이론과 사주 명리학을 결합해, 지금 당신에게 필요한 기운을 가진 산을 찾아주는 운명 가이드입니다.',
+  alternates: { canonical: '/sansu/about' },
+};
+
 export default function AboutPage() {
   return (
     <div className="p-6 pt-12">

@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '이용약관',
+  description: '개운산(GAEUNSAN) 서비스 이용조건, 이용자의 의무 및 책임의 제한에 관한 안내입니다.',
+  alternates: { canonical: '/sansu/terms' },
+};
+
 export default function TermsPage() {
   return (
     <div className="p-6 pt-12 prose prose-sm max-w-none">

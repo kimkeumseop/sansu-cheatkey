@@ -1,4 +1,11 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '개운 매거진',
+  description: '풍수 오성체, 띠별 명산 궁합, 산의 치유력 — 산과 운명에 관한 이야기들.',
+  alternates: { canonical: '/sansu/articles' },
+};
 
 const ARTICLES = [
   {
