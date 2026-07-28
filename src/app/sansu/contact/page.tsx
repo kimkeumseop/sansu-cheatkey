@@ -17,7 +17,9 @@ export default function ContactPage() {
       <div className="space-y-4">
         <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
           <h2 className="font-bold text-gray-900 mb-1">이메일 문의</h2>
-          <p className="text-[#7C3AED] font-medium">support@gaeunsan.com</p>
+          <a href="mailto:gaeunsan_help@naver.com" className="text-[#7C3AED] font-medium hover:underline">
+            gaeunsan_help@naver.com
+          </a>
           <p className="text-xs text-gray-400 mt-2">* 메일 확인 후 영업일 기준 2~3일 내에 회신 드립니다.</p>
         </div>
 
@@ -35,11 +37,7 @@ export default function ContactPage() {
       </div>
 
       <div className="mt-12 p-4 text-center">
-        <p className="text-[10px] text-gray-400 leading-relaxed">
-          GAEUNSAN | 대표: 김금섭
-          <br />
-          경기도 과천시 과천대로 2길
-        </p>
+        <p className="text-[10px] text-gray-400 leading-relaxed">GAEUNSAN | 운영자: 김금섭</p>
       </div>
     </div>
   );

@@ -140,7 +140,10 @@ export default function PrivacyPage() {
         <p className="text-sm leading-relaxed">
           <strong>개인정보 보호책임자</strong>: 김금섭
           <br />
-          <strong>이메일</strong>: support@gaeunsan.com
+          <strong>이메일</strong>:{' '}
+          <a href="mailto:gaeunsan_help@naver.com" className="underline font-bold">
+            gaeunsan_help@naver.com
+          </a>
           <br />
           <span className="text-xs opacity-80">문의 접수 후 영업일 기준 2~3일 내에 회신드립니다.</span>
         </p>
