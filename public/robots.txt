@@ -1,7 +1,18 @@
+# 애드센스 광고 크롤러는 모든 경로를 허용해야 광고가 정상 게재된다.
+# (Disallow된 경로에는 광고가 나가지 않거나 관련성 낮은 광고만 나간다)
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
 User-agent: *
 Allow: /
 
-# 개인화된 결과 URL은 파라미터 조합이 무한해 색인에서 제외
+# 개인화된 결과 URL은 파라미터 조합이 무한해 검색 색인에서만 제외
 Disallow: /sansu/result
 
 Sitemap: https://gaeunsan.vercel.app/sitemap.xml
