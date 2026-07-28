@@ -1,8 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllMountains } from '@/lib/sansu/recommender';
 import { SITE_URL } from '@/lib/sansu/site';
-
-const ARTICLE_SLUGS = ['five-elements', 'mountain-healing', 'zodiac-mountain'];
+import { ARTICLES } from '@/lib/sansu/articles';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const mountains = await getAllMountains();
@@ -25,9 +24,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: p.priority,
   }));
 
-  const articlePages: MetadataRoute.Sitemap = ARTICLE_SLUGS.map((slug) => ({
-    url: `${SITE_URL}/sansu/articles/${slug}`,
-    lastModified: now,
+  const articlePages: MetadataRoute.Sitemap = ARTICLES.map((a) => ({
+    url: `${SITE_URL}/sansu/articles/${a.slug}`,
+    lastModified: new Date(a.lastModified),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
