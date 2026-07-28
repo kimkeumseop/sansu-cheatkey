@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  verification: {
+    // Search Console 소유권 확인 (HTML 태그 방식). 확인이 끝나도 태그는 유지해야 한다.
+    google: "Uq__XjJJK6j-ipJKyUcbCDK6hy_aWPgaf3ep7bsbdlk",
+  },
   other: {
     "google-adsense-account": ADSENSE_CLIENT,
   },
