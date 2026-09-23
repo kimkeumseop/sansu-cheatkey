@@ -150,10 +150,10 @@ export default function SansuFormPage() {
           </p>
         </div>
 
-        {/* 소원 카테고리 */}
+        {/* 관심 주제 */}
         <div>
           <span className="block text-[11px] font-black mb-2.5 text-gray-500 tracking-[0.18em]">
-            어떤 기운이 필요한가요?
+            관심 있는 방문 테마는 무엇인가요?
           </span>
           <div className="grid grid-cols-2 gap-2">
             {WISH_CATEGORIES.map((c) => {

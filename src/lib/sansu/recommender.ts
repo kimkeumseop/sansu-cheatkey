@@ -157,7 +157,7 @@ function buildReason(
 
   if (matchedWishes.length > 0) {
     const label = getWishCategory(category)?.label ?? category;
-    parts.push(`${label} 관심 주제와 연결된 장소 태그가 있습니다 (${matchedWishes.join(' · ')}).`);
+    parts.push(`${label} 관심 주제와 연결된 장소 태그가 있습니다.`);
   }
 
   if (mountain.best_for_zodiac.includes(profile.zodiac)) {
