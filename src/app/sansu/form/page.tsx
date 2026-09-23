@@ -84,9 +84,9 @@ export default function SansuFormPage() {
         <span className="inline-block px-3 py-1 rounded-full bg-brand-soft text-brand text-[10px] font-black tracking-[0.2em] mb-3">
           STEP 1
         </span>
-        <h1 className="text-2xl font-black text-gray-900 mb-2">내 운명의 산 찾기</h1>
+        <h1 className="text-2xl font-black text-gray-900 mb-2">내 산행 후보 찾기</h1>
         <p className="text-[13px] text-gray-500 font-medium">
-          태어난 연도와 지금 필요한 기운만 알려주세요.
+          태어난 연도와 관심 주제를 알려주세요. 생년월일시로 풀이하는 사주는 아닙니다.
         </p>
       </header>
 
@@ -136,8 +136,7 @@ export default function SansuFormPage() {
                   </span>
                 </p>
                 <p className="text-gray-500 font-medium">
-                  타고난 기운 <b className="text-gray-700 font-hanja">{preview.userElement}</b> · 보충할
-                  기운{' '}
+                  띠에 연결된 오행 <b className="text-gray-700 font-hanja">{preview.userElement}</b> · 관련 산형{' '}
                   <b className="text-brand font-hanja">{preview.supplement}</b>(
                   {ELEMENT_LABEL[preview.supplement]}) →{' '}
                   <b className="text-gray-700">{preview.meta.nickname}</b>

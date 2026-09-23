@@ -5,7 +5,7 @@ import { SHAPE_META, DAY_NAMES, DAY_TO_ELEMENT, ELEMENT_LABEL, ShapeType } from 
 import { SITE_DESCRIPTION } from '@/lib/sansu/site';
 
 export const metadata: Metadata = {
-  title: '개운산(GAEUNSAN) - 오늘 어느 산에 가야 운이 트일까?',
+  title: '개운산(GAEUNSAN) - 30곳에서 내 산행 후보 찾기',
   description: SITE_DESCRIPTION,
   alternates: { canonical: '/sansu' },
 };
@@ -20,29 +20,29 @@ const ARTICLES = [
     slug: 'five-elements',
     tag: '풍수지리',
     tagColor: 'text-brand',
-    title: '당신의 운명을 바꾸는 산의 5가지 형태: 오성체 가이드',
-    desc: '목·화·토·금·수 — 산의 모양에 따라 달라지는 기운',
+    title: '산의 모습을 다섯 가지로 읽는 오성체 가이드',
+    desc: '목·화·토·금·수 — 산의 모양을 보는 전통적 관점',
   },
   {
     slug: 'zodiac-mountain',
     tag: '띠별 궁합',
     tagColor: 'text-amber-600',
-    title: '12지신과 궁합이 맞는 명산: 띠별로 다른 영험한 장소들',
-    desc: '내 띠와 상생하는 산에서 소원이 더 잘 이뤄지는 이유',
+    title: '띠와 산형을 연결하는 전통적 해석',
+    desc: '태어난 해를 바탕으로 산을 고르는 방식과 한계',
   },
   {
     slug: 'mountain-healing',
     tag: '마인드 케어',
     tagColor: 'text-emerald-600',
-    title: '왜 힘들 때 산에 가야 할까? 과학과 풍수가 말하는 치유력',
-    desc: '피톤치드와 지기(地氣)의 만남, 마음의 정화',
+    title: '지쳤을 때 부담을 줄이는 산행 계획',
+    desc: '코스 길이, 쉼터, 기상과 통제 정보 확인하기',
   },
 ];
 
 const STEPS = [
-  { n: '01', title: '태어난 연도 입력', desc: '12지신에서 타고난 오행을 계산합니다.' },
-  { n: '02', title: '부족한 기운 분석', desc: '오행 상생 원리로 채워야 할 기운을 찾습니다.' },
-  { n: '03', title: '오늘의 명산 추천', desc: '요일 시너지까지 반영해 명산 30선에서 고릅니다.' },
+  { n: '01', title: '태어난 연도 입력', desc: '태어난 해로 12지 띠를 찾습니다.' },
+  { n: '02', title: '관심 주제 선택', desc: '띠·산형과 장소 태그를 비교합니다.' },
+  { n: '03', title: '방문 정보 확인', desc: '후보 3곳의 코스와 위치를 보고 최신 공지를 확인합니다.' },
 ];
 
 export default async function SansuLandingPage() {
@@ -59,23 +59,23 @@ export default async function SansuLandingPage() {
         <div className="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-brand-soft to-transparent -z-10" />
 
         <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-brand/15 text-[11px] font-black text-brand tracking-[0.12em] card-soft mb-6">
-          🏔️ 명산 30선 · 풍수 오성체 분석
+          🏔️ 산행 후보 30곳 · 방문 정보 비교
         </span>
 
         <h2 className="text-brand font-black text-xs tracking-[0.3em] mb-3">GAEUNSAN</h2>
 
         <h1 className="text-[2rem] leading-[1.25] font-black text-gray-900 mb-4 text-balance">
-          오늘 어느 산에 가야
+          다음 산행은
           <br />
           <span className="bg-gradient-to-r from-brand to-brand-deep bg-clip-text text-transparent">
-            운이 트일까?
+            어디로 갈까?
           </span>
         </h1>
 
         <p className="text-gray-500 text-[15px] font-medium leading-relaxed mb-8">
-          사주 12지 오행 + 풍수 오성체 분석으로 찾은,
+          태어난 해의 띠와 관심 주제로 찾아보는,
           <br />
-          오늘 당신이 가야 할 영험한 산
+          산행 후보와 코스 정보
         </p>
 
         <Link
@@ -94,7 +94,7 @@ export default async function SansuLandingPage() {
           <p className="text-[11px] text-gray-500 font-medium leading-relaxed">
             오늘 <b className="text-gray-900">{dayName}요일</b>은{' '}
             <b className="text-brand font-hanja">{dayElement}</b>({ELEMENT_LABEL[dayElement]})의 날 —{' '}
-            {ELEMENT_LABEL[dayElement]}의 기운을 품은 산이 가장 강해집니다.
+            {ELEMENT_LABEL[dayElement]} 산형을 떠올리는 전통적 해석이 있습니다.
           </p>
         </div>
       </header>
@@ -107,6 +107,7 @@ export default async function SansuLandingPage() {
             {today.getMonth() + 1}월 {today.getDate()}일 · {dayName}요일
           </span>
         </div>
+        <p className="text-xs text-gray-500 mb-3">요일 태그와 날짜로 고른 탐색 예시입니다. 실제 산행은 날씨와 코스 상태를 먼저 확인하세요.</p>
 
         <Link
           href={`/sansu/mountain/${todayPick.id}`}
@@ -127,7 +128,7 @@ export default async function SansuLandingPage() {
             </p>
             <div className="flex items-center justify-between text-[12px] font-bold">
               <span className="opacity-80">
-                {todayPick.region} · {todayPick.elevation_m}m
+                {todayPick.region}
               </span>
               <span className="px-3 py-1.5 rounded-full bg-white/20 backdrop-blur">
                 자세히 보기 →
@@ -137,7 +138,7 @@ export default async function SansuLandingPage() {
         </Link>
 
         <p className="text-[11px] text-gray-400 mt-3 text-center font-medium">
-          내 사주까지 반영한 추천은{' '}
+          태어난 해의 띠를 반영한 후보는{' '}
           <Link href="/sansu/form" className="text-brand font-bold underline underline-offset-2">
             여기서 확인
           </Link>
@@ -148,9 +149,9 @@ export default async function SansuLandingPage() {
       <section className="px-6 pt-10 pb-2">
         <h3 className="font-black text-[17px] text-center mb-2 text-gray-900">왜 30개 산인가?</h3>
         <p className="text-[13px] text-gray-500 text-center mb-6 font-medium leading-relaxed">
-          산은 생김새에 따라 다섯 가지 기운을 냅니다.
+          오성체는 산의 생김새를 다섯 가지로 비유합니다.
           <br />
-          당신에게 부족한 기운을 채워줄 산형을 찾습니다.
+          실제 산행은 코스·날씨·체력부터 고려하세요.
         </p>
 
         <div className="grid grid-cols-2 gap-3">
@@ -200,19 +201,25 @@ export default async function SansuLandingPage() {
       {/* ── 풍수 근거 ─────────────────────────────────────── */}
       <section className="px-6 pt-10">
         <h3 className="font-black text-[17px] text-center mb-5 text-gray-900">
-          600년 전부터 인정받은 풍수
+          산을 읽는 옛 방식, 오성체
         </h3>
         <div className="relative bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/60 p-6 rounded-[2rem] card-soft">
           <span className="absolute -top-3 left-6 px-3 py-1 rounded-full bg-white border border-amber-200 text-[10px] font-black text-amber-700 tracking-[0.1em]">
-            조선왕조실록
+            전통 문화 이야기
           </span>
           <p className="text-[13px] text-gray-700 leading-[1.85] font-medium">
-            조선시대 경복궁 터를 정할 때, 관악산이{' '}
-            <b className="text-gray-900 font-hanja">화형산(火形山)</b>이라 그 화기(火氣)를 우려해
-            광화문 앞에 해태 석상을 세웠다는 기록이 있습니다. 산의 모양이 사람의 운을 흔든다고 본
-            선조들의 시선 — 지금 당신에게 필요한 기운은 무엇인가요?
+            오성체는 봉우리의 윤곽을 목·화·토·금·수의 모습에 빗대어 읽는 풍수의 한 방식입니다.
+            사이트에서는 이를 산을 비교하는 문화적 관점으로 사용합니다. 산형이 사람의 운세나 건강에
+            영향을 준다는 뜻은 아닙니다. <Link href="/sansu/about" className="underline font-bold">추천 기준 알아보기</Link>
           </p>
         </div>
+      </section>
+
+      <section className="px-6 pt-8">
+        <Link href="/sansu/mountains" className="block rounded-2xl border border-brand/20 bg-brand-soft p-5 text-brand-deep">
+          <span className="block font-black text-[15px]">산행 후보 30곳 한눈에 비교 →</span>
+          <span className="block text-xs mt-1">지역·예상 코스 시간·교통·난이도를 먼저 살펴보세요.</span>
+        </Link>
       </section>
 
       {/* ── 매거진 ────────────────────────────────────────── */}
@@ -251,7 +258,7 @@ export default async function SansuLandingPage() {
             <p className="text-[12px] text-purple-100 mb-6 leading-relaxed font-medium">
               태어난 연도 하나면 충분합니다.
               <br />
-              오늘 기준 가장 잘 맞는 명산 3곳을 알려드려요.
+              관심 주제로 비교할 산행 후보 3곳을 보여드려요.
             </p>
             <Link
               href="/sansu/form"

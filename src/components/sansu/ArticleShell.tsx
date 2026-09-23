@@ -15,8 +15,7 @@ type Props = {
 
 const DEFAULT_DISCLAIMER = (
   <>
-    ※ 본 글은 전통 풍수·민속 문화와 일반적인 산행 정보를 소개하는 콘텐츠이며, 의학적·법률적 조언이 아닙니다. 산행 시에는
-    기상 상황과 본인의 건강 상태를 우선 고려하시고, 위험 구간은 반드시 정규 등산로를 이용해 주세요.
+    전통 풍수·민속 문화는 실제 운세나 방문 효과를 보증하지 않습니다. 코스 시간과 개방 여부는 출발 전 관리 기관의 최신 안내를 확인해 주세요.
   </>
 );
 
@@ -24,12 +23,12 @@ export default function ArticleShell({
   title,
   date,
   children,
-  ctaTitle = '오늘 나에게 맞는 산은 어디일까?',
+  ctaTitle = '다음 산행 후보는 어디일까?',
   ctaDesc = (
     <>
-      태어난 해와 소원 분야만 고르면
+      태어난 해와 관심 주제를 고르면
       <br />
-      개운산이 어울리는 명산을 찾아드립니다.
+      개운산의 산행 후보를 비교할 수 있습니다.
     </>
   ),
   ctaLabel = '무료로 추천받기',
@@ -61,6 +60,9 @@ export default function ArticleShell({
         </section>
 
         <p className="text-[11px] text-gray-400 leading-relaxed mt-8">{disclaimer}</p>
+        <p className="text-[11px] text-gray-500 leading-relaxed">
+          방문 전에는 <a href="https://www.knps.or.kr" target="_blank" rel="noopener noreferrer" className="underline">국립공원공단</a> 또는 관할 기관의 공지를 확인하세요. <Link href="/sansu/about" className="underline">개운산의 편집 기준</Link>도 참고할 수 있습니다.
+        </p>
       </div>
     </article>
   );

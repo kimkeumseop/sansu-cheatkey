@@ -35,9 +35,9 @@ export async function generateMetadata({
   if (!best) return { title: '추천 결과' };
 
   const { zodiac } = getFortuneProfile(birthYear);
-  const title = `${zodiac}의 운명의 산은 ${best.mountain.name_ko}`;
-  const description = `${SHAPE_META[best.mountain.shape_type].formal} · ${best.mountain.energy_keywords.join(' · ')} — 추천도 ${best.score}%`;
-  const image = `/api/og?mountain=${best.mountain.id}&zodiac=${encodeURIComponent(zodiac)}&score=${best.score}`;
+  const title = `${zodiac}의 산행 후보: ${best.mountain.name_ko}`;
+  const description = `${SHAPE_META[best.mountain.shape_type].formal} · ${best.mountain.region} — 띠와 관심 주제로 비교한 산행 후보`;
+  const image = `/api/og?mountain=${best.mountain.id}&zodiac=${encodeURIComponent(zodiac)}`;
 
   return {
     title,
@@ -102,7 +102,7 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
             <span aria-hidden>{ZODIAC_EMOJI[profile.zodiac]}</span>
             {profile.zodiac}
             <span className="font-hanja opacity-70">{ZODIAC_HANJA[profile.zodiac]}</span>
-            님의 운명의 산
+            산행 후보
           </p>
 
           <h1 className="text-[2.75rem] leading-none font-black mb-2.5">{best.mountain.name_ko}</h1>
@@ -113,59 +113,44 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
               {meta.formal}
             </span>
             <span className="px-3 py-1.5 rounded-full bg-white/20 backdrop-blur text-[11px] font-bold">
-              {best.mountain.region} · {best.mountain.elevation_m}m
+              {best.mountain.region}
             </span>
             {typeof best.distanceKm === 'number' && (
               <span className="px-3 py-1.5 rounded-full bg-white/20 backdrop-blur text-[11px] font-bold">
-                내 위치에서 약 {Math.round(best.distanceKm)}km
+                내 위치에서 직선거리 약 {Math.round(best.distanceKm)}km
               </span>
             )}
           </div>
         </div>
       </div>
 
-      {/* ── 추천도 카드 ───────────────────────────────────── */}
+      {/* ── 선정 근거 카드 ────────────────────────────────── */}
       <div className="w-[90%] mx-auto -mt-12 relative">
         <div className="bg-white rounded-[2rem] shadow-lg glow-brand p-6 border border-brand/5">
           <div className="flex items-end justify-between mb-2">
-            <span className="text-[11px] font-black text-gray-500 tracking-[0.18em]">추천도</span>
-            <span className="text-[11px] font-bold text-amber-500" aria-label={`5점 만점에 ${best.stars}점`}>
-              {'★'.repeat(best.stars)}
-              <span className="text-gray-200">{'★'.repeat(5 - best.stars)}</span>
-            </span>
+            <span className="text-[11px] font-black text-gray-500 tracking-[0.18em]">이 후보를 고른 기준</span>
           </div>
-
-          <div className="flex items-baseline gap-1.5 mb-3">
-            <span className="text-4xl font-black text-gray-900">{best.score}</span>
-            <span className="text-lg font-black text-gray-300">%</span>
-          </div>
-
-          <div className="h-2 w-full rounded-full bg-gray-100 overflow-hidden mb-5">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-brand to-brand-deep"
-              style={{ width: `${best.score}%` }}
-            />
-          </div>
+          <p className="text-xs text-gray-500 leading-relaxed mb-4">태어난 해의 띠, 관심 주제, 요일과 선택한 위치를 비교했습니다. 운세나 실제 효과를 예측하지 않습니다. <Link href="/sansu/about" className="text-brand underline">선정 기준</Link></p>
 
           <div className="flex flex-wrap gap-1.5">
             {best.isShapeMatch && (
               <span className="px-2.5 py-1 rounded-full bg-brand-soft text-brand text-[11px] font-bold">
-                ✓ 부족한 기운 보충
+                ✓ 산형 분류 일치
               </span>
             )}
             {best.isZodiacMatch && (
               <span className="px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 text-[11px] font-bold">
-                ✓ {profile.zodiac} 궁합
+                ✓ {profile.zodiac} 분류 일치
               </span>
             )}
             {best.matchedWishes.length > 0 && wish && (
               <span className="px-2.5 py-1 rounded-full bg-rose-50 text-rose-600 text-[11px] font-bold">
-                ✓ {wish.label} 발원
+                ✓ {wish.label} 태그 일치
               </span>
             )}
             {(best.isDayMatch || best.isBestDay) && (
               <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold">
-                ⚡ 오늘({profile.dayName}) 시너지
+                오늘({profile.dayName}) 요일 분류 일치
               </span>
             )}
           </div>
@@ -176,7 +161,6 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
             shapeKo={meta.nickname}
             energyKeywords={best.mountain.energy_keywords}
             mountainId={best.mountain.id}
-            score={best.score}
           />
         </div>
       </div>
@@ -190,11 +174,11 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
             <div className="w-14 h-14 rounded-2xl bg-white border border-gray-200 grid place-items-center font-hanja text-2xl text-gray-700 shadow-sm mb-1.5">
               {profile.userElement}
             </div>
-            <p className="text-[10px] font-bold text-gray-500">내 기운</p>
+            <p className="text-[10px] font-bold text-gray-500">띠의 오행</p>
           </div>
 
           <div className="text-center px-1">
-            <p className="text-[10px] font-black text-gray-400 mb-1 tracking-wider">부족</p>
+            <p className="text-[10px] font-black text-gray-400 mb-1 tracking-wider">상생</p>
             <p className="text-gray-300 text-lg leading-none">→</p>
           </div>
 
@@ -206,7 +190,7 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
               {profile.supplementElement}
             </div>
             <p className="text-[10px] font-bold text-gray-500">
-              보충 · {ELEMENT_LABEL[profile.supplementElement]}
+              관련 · {ELEMENT_LABEL[profile.supplementElement]}
             </p>
           </div>
 
@@ -227,7 +211,7 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
 
         <div className="mt-4 bg-brand-soft border border-brand/10 rounded-2xl p-4">
           <span className="text-[10px] font-black text-brand tracking-[0.18em] block mb-1.5">
-            기운 키워드
+            문화 키워드
           </span>
           <p className="text-[13px] font-bold text-gray-800">
             {best.mountain.energy_keywords.join(' · ')}
@@ -252,12 +236,11 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
       {/* ── 명당 & 코스 미리보기 ──────────────────────────── */}
       {best.mountain.famous_spots.length > 0 && (
         <section className="w-[90%] mx-auto mt-8">
-          <h2 className="font-black text-[15px] text-gray-900 mb-3">여기서 소원을 비세요</h2>
+          <h2 className="font-black text-[15px] text-gray-900 mb-3">살펴볼 장소</h2>
           <div className="space-y-2.5">
             {best.mountain.famous_spots.slice(0, 2).map((spot, i) => (
               <div key={i} className="bg-white border border-gray-100 rounded-2xl p-4 card-soft">
                 <h3 className="font-bold text-[14px] text-gray-900 mb-1">{spot.name}</h3>
-                <p className="text-[12px] text-gray-500 font-medium leading-relaxed">{spot.desc}</p>
               </div>
             ))}
           </div>
@@ -269,14 +252,14 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
           href={`/sansu/mountain/${best.mountain.id}`}
           className="block w-full bg-gray-900 text-white text-center font-bold py-4 px-6 rounded-2xl shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-transform"
         >
-          {best.mountain.name_ko} 자세히 보기 (코스 · 명당)
+          {best.mountain.name_ko} 자세히 보기 (코스 · 지도)
         </Link>
       </div>
 
       {/* ── 차순위 ────────────────────────────────────────── */}
       {runnersUp.length > 0 && (
         <section className="w-[90%] mx-auto mt-10">
-          <h2 className="font-black text-[15px] text-gray-900 mb-3">이 산들도 잘 맞아요</h2>
+          <h2 className="font-black text-[15px] text-gray-900 mb-3">다른 산행 후보</h2>
           <div className="space-y-2.5">
             {runnersUp.map((rec) => {
               const m = SHAPE_META[rec.mountain.shape_type];
@@ -301,10 +284,7 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
                       {m.nickname} · {rec.mountain.region}
                     </p>
                   </div>
-                  <span className="shrink-0 text-right">
-                    <span className="block text-[15px] font-black text-gray-900">{rec.score}%</span>
-                    <span className="block text-[10px] font-bold text-gray-400">추천도</span>
-                  </span>
+                  <span className="shrink-0 text-gray-300 text-sm">→</span>
                 </Link>
               );
             })}
@@ -318,11 +298,10 @@ export default async function ResultPage({ searchParams }: { searchParams: Searc
           href="/sansu/form"
           className="inline-block text-[13px] font-bold text-gray-500 hover:text-brand underline underline-offset-4 transition"
         >
-          다른 연도 · 다른 소원으로 다시 보기
+          다른 연도 · 다른 관심 주제로 다시 보기
         </Link>
         <p className="text-[10px] text-gray-300 mt-4 font-medium leading-relaxed">
-          입산 통제 기간(봄 2~5월, 가을 11~12월)에는 방문 전<br />
-          해당 국립공원·지자체 공지를 확인해 주세요.
+          입산 통제와 기상 정보는 방문 전 해당 국립공원·지자체 공지를 확인해 주세요.
         </p>
       </div>
     </div>

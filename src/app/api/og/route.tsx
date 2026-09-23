@@ -44,8 +44,6 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const mountainId = searchParams.get('mountain');
     const zodiac = searchParams.get('zodiac') ?? '';
-    const scoreRaw = searchParams.get('score');
-    const score = scoreRaw && !Number.isNaN(Number(scoreRaw)) ? Number(scoreRaw) : null;
 
     const mountain = (data.mountains as Mountain[]).find((m) => m.id === mountainId);
 
@@ -53,18 +51,16 @@ export async function GET(req: NextRequest) {
 
     const headline = mountain
       ? zodiac
-        ? `${zodiac}의 운명의 산`
-        : '오늘의 영험한 산'
-      : '내 사주로 찾는 운명의 산';
+        ? `${zodiac}의 산행 후보`
+        : '오늘의 산행 후보'
+      : '산행 후보 비교';
     const nameKo = mountain?.name_ko ?? '개운산';
     const nameHanja = mountain?.name_hanja ?? '開運山';
     const keywords = mountain
       ? mountain.energy_keywords.slice(0, 4).join(' · ')
-      : '풍수 오성체 × 사주 오행';
-    const footer = '개운산 GAEUNSAN · 사주로 찾는 내 운명의 산';
-    const scoreText = score !== null ? `추천도 ${score}%` : '';
-
-    const allText = `${headline}${nameKo}${nameHanja}${keywords}${footer}${style.label}${scoreText}0123456789%·`;
+      : '산형과 방문 정보 비교';
+    const footer = '개운산 GAEUNSAN · 산행 후보 30곳 비교';
+    const allText = `${headline}${nameKo}${nameHanja}${keywords}${footer}${style.label}0123456789·`;
     const [bold, regular] = await Promise.all([
       loadKoreanFont(allText, 700),
       loadKoreanFont(allText, 400),
@@ -151,10 +147,6 @@ export async function GET(req: NextRequest) {
               <span style={{ display: 'flex' }}>{style.label}</span>
               <span style={{ display: 'flex', opacity: 0.5 }}>|</span>
               <span style={{ display: 'flex' }}>{keywords}</span>
-              {scoreText ? <span style={{ display: 'flex', opacity: 0.5 }}>|</span> : null}
-              {scoreText ? (
-                <span style={{ display: 'flex', fontWeight: 700 }}>{scoreText}</span>
-              ) : null}
             </div>
           </div>
 

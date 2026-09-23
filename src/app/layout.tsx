@@ -6,14 +6,12 @@ import { ADSENSE_CLIENT, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/san
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "개운산(GAEUNSAN) - 내 사주로 찾는 운명의 산",
+    default: "개운산(GAEUNSAN) - 띠와 관심 주제로 고르는 산행 후보",
     template: "%s | 개운산",
   },
   description: SITE_DESCRIPTION,
   keywords: [
-    "개운산행", "관악산 효과", "관쫀쿠", "풍수 오성체", "화형산",
-    "사주 등산", "띠별 운명의 산", "갓바위 합격 기도", "보리암 인연",
-    "오늘 가야 할 산", "등산 추천",
+    "산행 후보 비교", "풍수 오성체", "산형", "등산 코스", "띠별 산 추천",
   ],
   applicationName: SITE_NAME,
   alternates: {
@@ -24,12 +22,12 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     siteName: SITE_NAME,
     url: "/sansu",
-    title: "개운산(GAEUNSAN) - 오늘 어느 산에 가야 운이 트일까?",
+    title: "개운산(GAEUNSAN) - 나에게 맞는 산행 후보 비교",
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "개운산(GAEUNSAN) - 내 사주로 찾는 운명의 산",
+    title: "개운산(GAEUNSAN) - 나에게 맞는 산행 후보 비교",
     description: SITE_DESCRIPTION,
   },
   robots: {
@@ -82,12 +80,6 @@ export default function RootLayout({
           src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
           crossOrigin="anonymous"
           strategy="lazyOnload"
-        />
-        <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
       </body>
     </html>

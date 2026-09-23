@@ -27,14 +27,12 @@ export interface RecommendationInput {
 
 export interface MountainRecommendation {
   mountain: Mountain;
-  /** 0~100으로 정규화한 추천도 */
+  /** 후보를 정렬하기 위한 내부 점수이며 확률이 아니다. */
   score: number;
-  /** 5점 만점 별점 (표시용) */
-  stars: number;
   reason: string;
-  /** 사용자 사주에 보충되는 산형인지 */
+  /** 사이트의 띠·산형 연결 규칙에 맞는지 */
   isShapeMatch: boolean;
-  /** 오늘 요일과 산의 기운이 맞는지 */
+  /** 사이트의 요일·산형 연결 규칙에 맞는지 */
   isDayMatch: boolean;
   /** 데이터가 명시한 최적 요일에 오늘이 포함되는지 */
   isBestDay: boolean;
@@ -148,26 +146,26 @@ function buildReason(
   const parts: string[] = [];
 
   parts.push(
-    `${profile.zodiac}는 ${profile.userElement}(${ELEMENT_LABEL[profile.userElement]})의 기운을 타고났습니다. ` +
-      `이 기운을 살리려면 이를 낳아주는 ${profile.supplementElement}(${ELEMENT_LABEL[profile.supplementElement]})의 기운이 필요합니다.`
+    `태어난 해를 기준으로 ${profile.zodiac}로 분류했습니다. 개운산의 문화적 연결표에서는 ` +
+      `${profile.userElement}(${ELEMENT_LABEL[profile.userElement]})에 ${profile.supplementElement}(${ELEMENT_LABEL[profile.supplementElement]}) 산형을 연결합니다.`
   );
 
   parts.push(
-    `${withParticle(mountain.name_ko, '은', '는')} ${meta.formal} — ${meta.shape} 형태로 ` +
-      `${SHAPE_TO_ELEMENT[mountain.shape_type]}의 기운이 강한 산입니다.`
+    `${withParticle(mountain.name_ko, '은', '는')} ${meta.formal} — ${meta.shape} 모습에 빗댄 ` +
+      `${SHAPE_TO_ELEMENT[mountain.shape_type]} 산형으로 분류했습니다.`
   );
 
   if (matchedWishes.length > 0) {
     const label = getWishCategory(category)?.label ?? category;
-    parts.push(`특히 ${label} 발원지로 알려져 있습니다 (${matchedWishes.join(' · ')}).`);
+    parts.push(`${label} 관심 주제와 연결된 장소 태그가 있습니다 (${matchedWishes.join(' · ')}).`);
   }
 
   if (mountain.best_for_zodiac.includes(profile.zodiac)) {
-    parts.push(`예로부터 ${profile.zodiac}와 궁합이 좋다고 전해지는 산입니다.`);
+    parts.push(`사이트의 분류표에서 ${profile.zodiac}와 연결된 장소입니다.`);
   }
 
   if (isDayMatch) {
-    parts.push(`오늘은 ${profile.dayName}요일 — 이 산의 기운이 가장 강해지는 날입니다.`);
+    parts.push(`오늘 ${profile.dayName}요일은 사이트의 요일·산형 연결표와도 겹칩니다.`);
   }
 
   return parts.join(' ');
@@ -184,7 +182,7 @@ export async function recommend(input: RecommendationInput): Promise<MountainRec
     const isDayMatch = isDaySynergy(profile.today, m.shape_type);
     const isBestDay = m.best_day_of_week.includes(profile.dayName);
 
-    // 45점을 기준으로 가산. 상한 99로 정규화해 '추천도 %'로 그대로 노출한다.
+    // 45점부터 조건별로 가산해 후보 정렬에만 사용한다.
     let score = 45;
     if (isShapeMatch) score += 25;
     score += Math.min(matchedWishes.length * 7, 14);
@@ -205,7 +203,6 @@ export async function recommend(input: RecommendationInput): Promise<MountainRec
     return {
       mountain: m,
       score,
-      stars: Math.max(3, Math.min(5, Math.round(score / 20))),
       reason: buildReason(profile, m, matchedWishes, isDayMatch, input.category),
       isShapeMatch,
       isDayMatch,

@@ -34,7 +34,7 @@ export default function PrivacyPage() {
 
       <h2 className="text-lg font-bold mt-8 mb-4">2. 개인정보의 이용 목적</h2>
       <ul className="list-disc ml-5 text-gray-600 mb-4 space-y-1">
-        <li>사주 오행·띠 기반 맞춤 산 추천 결과 제공</li>
+        <li>태어난 연도의 띠와 관심 주제에 따른 산행 후보 제공</li>
         <li>서비스 이용 통계 분석 및 콘텐츠 개선</li>
         <li>문의 응대 및 오류 대응</li>
         <li>광고 게재 및 광고 성과 측정</li>

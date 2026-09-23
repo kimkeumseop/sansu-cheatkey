@@ -15,6 +15,12 @@ export default function TopBar() {
 
         <nav className="flex items-center gap-1.5">
           <Link
+            href="/sansu/mountains"
+            className="px-2 py-1.5 rounded-full text-xs font-bold text-gray-500 hover:text-brand hover:bg-brand-soft transition"
+          >
+            산 비교
+          </Link>
+          <Link
             href="/sansu/articles"
             className="px-3 py-1.5 rounded-full text-xs font-bold text-gray-500 hover:text-brand hover:bg-brand-soft transition"
           >

@@ -3,6 +3,7 @@ import Link from 'next/link';
 const LINKS = [
   { href: '/sansu', label: '홈' },
   { href: '/sansu/articles', label: '매거진' },
+  { href: '/sansu/mountains', label: '산 비교' },
   { href: '/sansu/about', label: '소개' },
   { href: '/sansu/privacy', label: '개인정보처리방침' },
   { href: '/sansu/terms', label: '이용약관' },
@@ -33,8 +34,7 @@ export default function Footer() {
 
       <div className="space-y-2 text-[10px] text-gray-400 font-medium leading-relaxed max-w-[22rem] mx-auto">
         <p>
-          본 서비스는 전통 풍수 오성체 이론과 사주 12지 오행을 결합한 <b>콘텐츠 추천</b>이며, 종교·의료·법률
-          자문이 아닙니다.
+          태어난 해의 띠와 풍수 산형을 연결한 <b>문화적 콘텐츠 추천</b>입니다. 실제 운세·건강 효과를 예측하지 않습니다.
         </p>
         <p>
           등산 시 안전수칙을 준수하시고, 위험 코스는 전문 가이드와 동행하세요. 산불방지 입산 통제

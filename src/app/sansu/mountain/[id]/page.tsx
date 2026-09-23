@@ -23,24 +23,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const meta = SHAPE_META[mountain.shape_type];
   const title = `${mountain.name_ko}(${mountain.name_hanja}) - ${meta.formal}`;
-  const description = `${mountain.name_ko}은 ${meta.formal}. ${mountain.energy_keywords.join(' · ')}의 기운이 흐릅니다. 명당 포인트와 추천 등산 코스, 잘 맞는 띠까지 한눈에.`;
+  const description = `${mountain.name_ko}의 위치, 예시 코스, 접근 방법과 살펴볼 장소를 정리했습니다. ${meta.formal}은 사이트의 문화적 산형 분류입니다.`;
   const image = `/api/og?mountain=${mountain.id}`;
 
   return {
     title,
     description,
+    robots: { index: false, follow: true },
     alternates: { canonical: `/sansu/mountain/${mountain.id}` },
     openGraph: {
       type: 'article',
       title: `${mountain.name_ko} - ${meta.nickname}`,
-      description: mountain.story.slice(0, 160),
+      description,
       url: `/sansu/mountain/${mountain.id}`,
       images: [{ url: image, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${mountain.name_ko} - ${meta.nickname}`,
-      description: mountain.energy_keywords.join(' · '),
+      description,
       images: [image],
     },
   };
@@ -63,11 +64,10 @@ export default async function MountainDetailPage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',
     name: `${mountain.name_ko}(${mountain.name_hanja})`,
-    description: mountain.story,
+    description: `${mountain.name_ko}의 위치와 예시 코스 정보`,
     url: absoluteUrl(`/sansu/mountain/${mountain.id}`),
     address: { '@type': 'PostalAddress', addressCountry: 'KR', addressLocality: mountain.address },
     geo: { '@type': 'GeoCoordinates', latitude: mountain.lat, longitude: mountain.lng },
-    touristType: mountain.wish_categories,
   };
 
   return (
@@ -89,13 +89,14 @@ export default async function MountainDetailPage({ params }: Props) {
           <h1 className="text-3xl font-black mb-1">{mountain.name_ko}</h1>
           <p className="font-hanja text-lg opacity-80 mb-1.5">{mountain.name_hanja}</p>
           <p className="text-[12px] font-bold opacity-85">
-            {mountain.region} · {mountain.elevation_m}m
+            {mountain.region}
           </p>
         </div>
       </div>
 
       <div className="w-full px-6 pt-6 -mt-5 bg-white rounded-t-[2rem] relative z-10">
         {/* 요약 배지 */}
+        <p className="text-xs text-gray-500 leading-relaxed mb-5">이 페이지는 방문 후보를 살펴보는 간략한 안내입니다. 풍수·띠 설명은 문화적 해석이며 코스 정보는 출발 전에 관리 기관에서 확인해 주세요.</p>
         <div className="flex flex-wrap gap-1.5 mb-7">
           <span className={`px-3 py-1.5 rounded-full border text-[11px] font-bold ${level.className}`}>
             난이도 {level.text}
@@ -105,13 +106,13 @@ export default async function MountainDetailPage({ params }: Props) {
             {ELEMENT_LABEL[SHAPE_TO_ELEMENT[mountain.shape_type]]}
           </span>
           <span className="px-3 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-gray-600 text-[11px] font-bold">
-            기운 좋은 요일 {mountain.best_day_of_week.join('·')}
+            전통 해석상 어울리는 요일 {mountain.best_day_of_week.join('·')}
           </span>
         </div>
 
         {/* 기운 키워드 */}
         <section className="mb-8">
-          <h2 className="font-black text-[15px] mb-3 text-gray-900">이 산의 기운</h2>
+          <h2 className="font-black text-[15px] mb-3 text-gray-900">전통 문화 키워드</h2>
           <div className="flex flex-wrap gap-2">
             {mountain.energy_keywords.map((k, i) => (
               <span
@@ -123,31 +124,9 @@ export default async function MountainDetailPage({ params }: Props) {
             ))}
           </div>
           <p className="text-[12px] text-gray-500 font-medium mt-3 leading-relaxed">
-            {meta.formal}은 {meta.shape} 형태로, {meta.keywords}의 기운을 냅니다.
+            {meta.formal}은 산의 모습을 {meta.shape} 모양에 빗대는 풍수 분류입니다. {meta.keywords}은 문화적 해석이며 실제 효과를 뜻하지 않습니다.
           </p>
         </section>
-
-        {/* 풍수 스토리 */}
-        <section className="mb-8">
-          <h2 className="font-black text-[15px] mb-3 text-gray-900">풍수 스토리</h2>
-          <p className="text-[13px] text-gray-700 leading-[1.9] font-medium bg-gray-50 p-5 rounded-[1.5rem]">
-            {mountain.story}
-          </p>
-        </section>
-
-        {/* 트렌드 노트 */}
-        {mountain.trend_note && (
-          <section className="mb-8">
-            <div className="relative bg-gradient-to-br from-brand-soft to-white border border-brand/15 p-5 rounded-[1.5rem] card-soft">
-              <span className="absolute -top-2.5 left-5 px-2.5 py-0.5 rounded-full bg-brand text-white text-[10px] font-black tracking-[0.1em]">
-                TREND
-              </span>
-              <p className="text-[12.5px] text-gray-700 leading-[1.9] font-medium mt-1">
-                {mountain.trend_note}
-              </p>
-            </div>
-          </section>
-        )}
 
         {/* 위치 */}
         <section className="mb-8">
@@ -163,15 +142,14 @@ export default async function MountainDetailPage({ params }: Props) {
 
         {/* 명당 포인트 */}
         <section className="mb-8">
-          <h2 className="font-black text-[15px] mb-3 text-gray-900">명당 포인트</h2>
+          <h2 className="font-black text-[15px] mb-3 text-gray-900">살펴볼 장소</h2>
           <div className="space-y-2.5">
             {mountain.famous_spots.map((spot, idx) => (
               <div
                 key={idx}
                 className="border border-gray-100 p-5 rounded-[1.5rem] card-soft bg-white"
               >
-                <h3 className="font-bold text-[14px] text-brand mb-1">📍 {spot.name}</h3>
-                <p className="text-[12.5px] text-gray-600 font-medium leading-relaxed">{spot.desc}</p>
+                <h3 className="font-bold text-[14px] text-brand">📍 {spot.name}</h3>
               </div>
             ))}
           </div>
@@ -203,7 +181,7 @@ export default async function MountainDetailPage({ params }: Props) {
 
         {/* 소원 카테고리 */}
         <section className="mb-8">
-          <h2 className="font-black text-[15px] mb-3 text-gray-900">이런 분들께 추천해요</h2>
+          <h2 className="font-black text-[15px] mb-3 text-gray-900">관심 주제 태그</h2>
           <div className="flex flex-wrap gap-2">
             {mountain.wish_categories.map((wish, idx) => (
               <span
@@ -218,7 +196,7 @@ export default async function MountainDetailPage({ params }: Props) {
 
         {/* 12지 궁합 매트릭스 */}
         <section className="mb-8">
-          <h2 className="font-black text-[15px] mb-3 text-gray-900">띠별 궁합</h2>
+          <h2 className="font-black text-[15px] mb-3 text-gray-900">띠별 문화 해석</h2>
           <div className="grid grid-cols-4 gap-2">
             {ALL_ZODIACS.map((z) => {
               const match = mountain.best_for_zodiac.includes(z);
@@ -246,7 +224,7 @@ export default async function MountainDetailPage({ params }: Props) {
             })}
           </div>
           <p className="text-[11px] text-gray-400 mt-2.5 font-medium text-center">
-            강조된 띠가 이 산과 특히 잘 맞습니다.
+            강조된 띠는 사이트의 분류 규칙에 따른 표시입니다. 실제 궁합이나 방문 효과를 보증하지 않습니다.
           </p>
         </section>
 
@@ -300,7 +278,7 @@ export default async function MountainDetailPage({ params }: Props) {
           <div className="bg-gradient-to-br from-brand-deep via-brand to-purple-900 text-white p-7 rounded-[2rem] text-center shadow-lg glow-brand-lg">
             <h2 className="font-black text-[17px] mb-2">여기가 내 산이 맞을까?</h2>
             <p className="text-[12px] text-purple-100 mb-5 leading-relaxed font-medium">
-              태어난 연도로 내 사주와의 궁합을
+              태어난 해의 띠로 산행 후보를
               <br />
               30초 만에 확인해 보세요.
             </p>
@@ -313,10 +291,9 @@ export default async function MountainDetailPage({ params }: Props) {
           </div>
         </section>
 
-        <p className="text-[10px] text-gray-300 text-center font-medium leading-relaxed mb-6">
-          산불방지 입산 통제(봄 2~5월, 가을 11~12월) 기간에는
-          <br />
-          방문 전 관할 국립공원·지자체 공지를 확인해 주세요.
+        <p className="text-[11px] text-gray-500 text-center font-medium leading-relaxed mb-6">
+          코스 시간·교통·난이도는 참고용입니다. 기상과 통제 정보는 방문 전에{' '}
+          <a href="https://www.knps.or.kr" target="_blank" rel="noopener noreferrer" className="underline">국립공원공단</a> 또는 관할 지자체에서 확인해 주세요.
         </p>
 
         <Link

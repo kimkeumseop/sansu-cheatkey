@@ -5,7 +5,7 @@ import { ARTICLES } from '@/lib/sansu/articles';
 export const metadata: Metadata = {
   title: '개운 매거진',
   description:
-    '풍수 오성체, 띠별 명산 궁합, 기도처 가이드, 계절별 산행 기준까지 — 산과 운명에 관한 이야기와 실전 정보를 모았습니다.',
+    '풍수 오성체의 문화적 해석, 기도처 방문 예절, 계절별 산행과 준비물 정보를 모았습니다.',
   alternates: { canonical: '/sansu/articles' },
 };
 
@@ -13,7 +13,7 @@ export default function ArticlesPage() {
   return (
     <div className="p-6 pt-12">
       <h1 className="text-2xl font-bold mb-2">개운 매거진</h1>
-      <p className="text-gray-500 text-sm mb-8 font-medium">산과 운명에 관한 영험한 이야기들</p>
+      <p className="text-gray-500 text-sm mb-8 font-medium">산을 읽는 문화적 관점과 실제 방문에 도움이 되는 정보.</p>
 
       <div className="space-y-6">
         {ARTICLES.map((article) => (
@@ -34,11 +34,11 @@ export default function ArticlesPage() {
       </div>
 
       <div className="mt-12 bg-slate-900 text-white p-8 rounded-[2rem] text-center">
-        <h3 className="font-bold mb-2">운명의 산을 찾으셨나요?</h3>
+        <h3 className="font-bold mb-2">다음 산행 후보를 고르셨나요?</h3>
         <p className="text-xs text-gray-400 mb-6 leading-relaxed">
-          당신의 사주와 가장 잘 맞는
+          태어난 해의 띠와 관심 주제로
           <br />
-          영험한 산을 지금 바로 확인해 보세요.
+          산행 후보를 비교해 보세요.
         </p>
         <Link
           href="/sansu/form"

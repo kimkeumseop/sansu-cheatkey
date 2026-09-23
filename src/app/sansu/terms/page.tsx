@@ -18,7 +18,7 @@ export default function TermsPage() {
 
       <h2 className="text-lg font-bold mt-8 mb-4">제2조 (서비스의 내용)</h2>
       <p className="text-gray-600 mb-4">
-        회사는 전통 풍수 및 사주 정보를 바탕으로 사용자에게 맞춤형 산을 추천하는 서비스를 제공합니다. 본 서비스의 결과는 참고용이며, 어떠한 법적/의료적 효력도 가지지 않습니다.
+        개운산은 태어난 해의 띠와 관심 주제를 바탕으로 산행 후보를 비교하는 서비스를 제공합니다. 풍수와 띠의 연결은 문화적 해석이며, 결과는 참고용입니다. 실제 운세·건강 효과를 보증하지 않습니다.
       </p>
 
       <h2 className="text-lg font-bold mt-8 mb-4">제3조 (이용자의 의무)</h2>

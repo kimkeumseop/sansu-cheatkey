@@ -11,7 +11,6 @@ interface ShareButtonsProps {
   shapeKo: string;
   energyKeywords: string[];
   mountainId: string;
-  score?: number;
 }
 
 interface KakaoSDK {
@@ -34,7 +33,6 @@ export default function ShareButtons({
   shapeKo,
   energyKeywords,
   mountainId,
-  score,
 }: ShareButtonsProps) {
   const [kakaoReady, setKakaoReady] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -67,9 +65,7 @@ export default function ShareButtons({
     return () => clearTimeout(t);
   }, [toast]);
 
-  const shareText = `${zodiac}인 내 운명의 산은 ${mountainName} 🏔️ ${shapeKo}의 기운${
-    typeof score === 'number' ? ` · 추천도 ${score}%` : ''
-  }`;
+  const shareText = `${zodiac}의 산행 후보는 ${mountainName} 🏔️ ${shapeKo} 산형`;
 
   const getUrl = () => (typeof window !== 'undefined' ? window.location.href : '');
   const getOrigin = () => (typeof window !== 'undefined' ? window.location.origin : '');
@@ -84,16 +80,14 @@ export default function ShareButtons({
     sdk.Share.sendDefault({
       objectType: 'feed',
       content: {
-        title: `${zodiac}인 당신의 운명의 산은 ${mountainName}`,
+        title: `${zodiac}의 산행 후보: ${mountainName}`,
         description: `${shapeKo} · ${energyKeywords.slice(0, 4).join('·')}`,
-        imageUrl: `${getOrigin()}/api/og?mountain=${mountainId}&zodiac=${encodeURIComponent(zodiac)}${
-          typeof score === 'number' ? `&score=${score}` : ''
-        }`,
+        imageUrl: `${getOrigin()}/api/og?mountain=${mountainId}&zodiac=${encodeURIComponent(zodiac)}`,
         link: { mobileWebUrl: url, webUrl: url },
       },
       buttons: [
         {
-          title: '내 운명의 산 보기',
+          title: '산행 후보 보기',
           link: {
             mobileWebUrl: `${getOrigin()}/sansu`,
             webUrl: `${getOrigin()}/sansu`,
@@ -101,7 +95,7 @@ export default function ShareButtons({
         },
       ],
     });
-  }, [zodiac, mountainName, shapeKo, energyKeywords, mountainId, score]);
+  }, [zodiac, mountainName, shapeKo, energyKeywords, mountainId]);
 
   const handleXShare = () => {
     const text = `${shareText}\n\n#개운산행 #풍수 #오성체 #${mountainName}`;
